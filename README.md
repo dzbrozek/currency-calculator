@@ -5,7 +5,8 @@ Kalkulator walut (wszystkie z tabeli C, z API NBP, http://api.nbp.pl/#kursyWalut
 * 2 podstrony (na dowolnym routerze):
     * home page z konwerterem, możliwość wyboru walut
     * about page, może być wypełniona "Lorem ipsum"
-* wykorzystanie jednego z frameworków do UI (np. MaterialUI) o ale też zmiana podstawowych kolorów theme na kolory Milo (#FAA83B, #DD6526)
+* wykorzystanie jednego z frameworków do UI (np. MaterialUI)
+    * ale też zmiana podstawowych kolorów theme na kolory Milo (#FAA83B, #DD6526)
 * napisanie z wykorzystaniem TypeScript
 
 ## Available Scripts

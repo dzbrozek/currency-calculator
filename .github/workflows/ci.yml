@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install modules
+        run: yarn install --frozen-lockfile --ignore-scripts
+      - name: Run ESLint
+        run: yarn lint
+      - name: Check types
+        run: yarn typecheck
+      - uses: wagoid/commitlint-github-action@v2
+        name: Lint commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

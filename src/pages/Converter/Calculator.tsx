@@ -19,9 +19,9 @@ const schema = yup.object().shape({
 
 const Calculator = () => {
   const initialValues = {
-    from: undefined,
-    to: undefined,
-    amount: undefined,
+    from: '',
+    to: '',
+    amount: '',
   };
   const onSubmit = async (values: typeof initialValues) => {
     console.log(values);
@@ -54,10 +54,11 @@ const Calculator = () => {
                   id="from"
                   onChange={(e) => setFieldValue('from', e.target.value)}
                   onBlur={() => setFieldTouched('from')}
+                  value={values.from}
                 >
-                  <MenuItem value={10}>GBP</MenuItem>
-                  <MenuItem value={20}>USD</MenuItem>
-                  <MenuItem value={30}>PLN</MenuItem>
+                  <MenuItem value="GBP">GBP</MenuItem>
+                  <MenuItem value="USD">USD</MenuItem>
+                  <MenuItem value="PLN">PLN</MenuItem>
                 </Select>
                 {touched.from && errors.from ? (
                   <FormHelperText>{errors.from}</FormHelperText>
@@ -69,7 +70,7 @@ const Calculator = () => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                height="100%"
+                height={56}
               >
                 <ArrowForwardIcon />
               </Box>
@@ -82,10 +83,11 @@ const Calculator = () => {
                   id="to"
                   onChange={(e) => setFieldValue('to', e.target.value)}
                   onBlur={() => setFieldTouched('to')}
+                  value={values.to}
                 >
-                  <MenuItem value={10}>GBP</MenuItem>
-                  <MenuItem value={20}>USD</MenuItem>
-                  <MenuItem value={30}>PLN</MenuItem>
+                  <MenuItem value="GBP">GBP</MenuItem>
+                  <MenuItem value="USD">USD</MenuItem>
+                  <MenuItem value="PLN">PLN</MenuItem>
                 </Select>
                 {touched.to && errors.to ? (
                   <FormHelperText>{errors.to}</FormHelperText>

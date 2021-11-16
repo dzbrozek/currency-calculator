@@ -53,9 +53,9 @@ const Results = () => {
         </Typography>
       </Box>
       <Box marginTop={1} display="flex" justifyContent="center">
-        <Button variant="text">Check today</Button>
+        <Button variant="text">Check exchange rate for today</Button>
         <Button variant="text" onClick={() => setMonthPickerOpen(true)}>
-          Check past month
+          Check exchange rate for past months
         </Button>
         <Dialog
           open={monthPickerOpen}

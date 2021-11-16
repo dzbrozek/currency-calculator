@@ -1,13 +1,21 @@
 import NoMatch from 'pages/NoMatch';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import About from 'pages/About';
-import Calculator from 'pages/Calculator';
+import Converter from 'pages/Converter';
+import Container from '@mui/material/Container';
 
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/">
-        <Route index element={<Calculator />} />
+      <Route
+        path="/"
+        element={
+          <Container component="main" maxWidth="md">
+            <Outlet />
+          </Container>
+        }
+      >
+        <Route index element={<Converter />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NoMatch />} />
       </Route>

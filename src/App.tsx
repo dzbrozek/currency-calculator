@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import createTheme from '@mui/material/styles/createTheme';
+import ConverterProvider from 'components/ConverterProvider';
 import Routing from 'Routing';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -26,7 +27,9 @@ function App() {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <Routing />
+          <ConverterProvider>
+            <Routing />
+          </ConverterProvider>
         </LocalizationProvider>
       </ThemeProvider>
     </>

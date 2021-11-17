@@ -1,4 +1,4 @@
-import { FormHelperText } from '@mui/material';
+import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Button from '@mui/material/Button';
@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Box from '@mui/material/Box';
 import { Formik } from 'formik';
+import useConverter from 'hooks/useConverter';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -18,13 +19,25 @@ const schema = yup.object().shape({
 });
 
 const Calculator = () => {
+  const {
+    convertAmount,
+    convertFrom,
+    convertTo,
+    convert,
+    isLoading,
+    exchangeRates,
+  } = useConverter();
   const initialValues = {
-    from: '',
-    to: '',
-    amount: '',
+    from: convertFrom || '',
+    to: convertTo || '',
+    amount: convertAmount || '',
   };
   const onSubmit = async (values: typeof initialValues) => {
-    console.log(values);
+    convert(
+      values.from as string,
+      values.to as string,
+      values.amount as number,
+    );
   };
 
   return (
@@ -56,9 +69,11 @@ const Calculator = () => {
                   onBlur={() => setFieldTouched('from')}
                   value={values.from}
                 >
-                  <MenuItem value="GBP">GBP</MenuItem>
-                  <MenuItem value="USD">USD</MenuItem>
-                  <MenuItem value="PLN">PLN</MenuItem>
+                  {Object.values(exchangeRates || []).map((rate) => (
+                    <MenuItem value={rate.code} key={rate.code}>
+                      {rate.currency}
+                    </MenuItem>
+                  ))}
                 </Select>
                 {touched.from && errors.from ? (
                   <FormHelperText>{errors.from}</FormHelperText>
@@ -85,9 +100,11 @@ const Calculator = () => {
                   onBlur={() => setFieldTouched('to')}
                   value={values.to}
                 >
-                  <MenuItem value="GBP">GBP</MenuItem>
-                  <MenuItem value="USD">USD</MenuItem>
-                  <MenuItem value="PLN">PLN</MenuItem>
+                  {Object.values(exchangeRates || []).map((rate) => (
+                    <MenuItem value={rate.code} key={rate.code}>
+                      {rate.currency}
+                    </MenuItem>
+                  ))}
                 </Select>
                 {touched.to && errors.to ? (
                   <FormHelperText>{errors.to}</FormHelperText>
@@ -116,7 +133,7 @@ const Calculator = () => {
               className="button"
               fullWidth={true}
               onClick={submitForm}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isLoading}
             >
               Convert
             </Button>

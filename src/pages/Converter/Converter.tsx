@@ -32,7 +32,9 @@ const Converter = () => {
               marginTop={4}
               marginBottom={4}
             >
-              <Alert severity="error">{error}</Alert>
+              <Alert severity="error" sx={{ width: '100%' }}>
+                {error}
+              </Alert>
             </Box>
           ) : (
             <>

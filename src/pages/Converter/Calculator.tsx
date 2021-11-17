@@ -15,7 +15,7 @@ import * as yup from 'yup';
 const schema = yup.object().shape({
   from: yup.string().required('Select currency from which you convert'),
   to: yup.string().required('Select currency to which you convert'),
-  amount: yup.number().required('Enter amount'),
+  amount: yup.number().positive().required('Enter amount'),
 });
 
 const Calculator = () => {

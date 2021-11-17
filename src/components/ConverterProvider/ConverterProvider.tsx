@@ -87,7 +87,8 @@ const ConverterProvider = ({ children }: ConverterProviderProps) => {
         setError(response.statusText);
       }
     } catch (e) {
-      setError(String(e));
+      console.error('Unable to fetch exchange rates', e);
+      setError('Unable to fetch exchange rates');
     } finally {
       setIsLoading(false);
     }
@@ -98,7 +99,6 @@ const ConverterProvider = ({ children }: ConverterProviderProps) => {
   }, [fetchExchangeRates, exchangeDate]);
 
   useEffect(() => {
-    // calculate exchange rate
     if (exchangeRates && convertFrom && convertTo && convertAmount) {
       setConvertRate(
         exchangeRates[convertFrom].ask / exchangeRates[convertTo].ask,
